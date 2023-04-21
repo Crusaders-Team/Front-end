@@ -8,6 +8,7 @@ import { theme } from '../../Theme/ThemeGenerator'
 import { PTypography } from '../../Components/PersianComponent'
 import { PRoundButton } from '../../Components/PersianComponent'
 import Link from '@mui/material/Link'
+import PhoneEnabledIcon from '@mui/icons-material/PhoneEnabled';
 
 function SignUp() {
 
@@ -66,7 +67,7 @@ function SignUp() {
               id='lastName'
               name='lastName'
               variant='standard'
-              label='نام خانوادگی'
+              label='نام کاربری'
               margin='normal'
               InputProps={{
                 startAdornment: (
@@ -81,13 +82,13 @@ function SignUp() {
               id='userName'
               name='userName'
               variant='standard'
-              label='نام کاربری'
+              label='شماره تماس'
               margin='normal'
               InputProps={{
                 startAdornment: (
                   <InputAdornment position='start'>
                     {' '}
-                    <AccountCircle />{' '}
+                    <PhoneEnabledIcon />{' '}
                   </InputAdornment>
                 ),
               }}
