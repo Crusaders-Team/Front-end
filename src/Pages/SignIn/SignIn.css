@@ -1,0 +1,43 @@
+.MuiFormHelperText-root {
+    color : red !important;
+}
+.centerElement{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.ButtonStyle{
+    display: flex;
+    display: inline-block !important;
+    text-transform: uppercase !important;
+}
+.ButtonStyle2{
+    color: #212121 !important;
+    border-color: #B8E0D2 !important;
+}
+.Buttons{
+    margin-left: 0% !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+.divSignUp{
+    display: flex;
+    align-items: center !important;
+    justify-content: center !important;
+}
+.aSignUp{
+    color: #212121 !important;
+    text-decoration: underline !important;
+    
+}
+.aSignUp:hover{
+    color: #0673F3 !important;
+    text-decoration: underline !important;
+}
+.textFieldContainer{
+    float: right;
+}
+.css-o2i9lr-MuiFormLabel-root-MuiInputLabel-root{
+    font-family: 'Kalameh' !important;
+    right: 0;
+}
