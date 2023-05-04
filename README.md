@@ -1,70 +1,154 @@
-# Getting Started with Create React App
+## Getting Started
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-## Available Scripts
+### Prerequisites
 
-In the project directory, you can run:
+What things you need to install the software and how to install them
 
-### `npm start`
+- Node.js
+- npm or yarn
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Installation
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+A step by step series of examples that tell you how to get a development env running
 
-### `npm test`
+Clone the repository:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
+git clone https://github.com/Crusaders-Team/Front-end.git
+```
 
-### `npm run build`
+Install dependencies:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+npm install
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Usage
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Explain how to run the development server and any other important usage information.
 
-### `npm run eject`
+Start the development server:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```
+npm start
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Running Tests
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Explain how to run the automated tests for this system.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+```
+npm test
+```
 
 ### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Explain how to deploy this project to a production environment.
 
-### `npm run build` fails to minify
+```
+npm run build
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This command creates a production-ready build of your application in the `build` folder. You can deploy this build to a web server to make your application live.
+
+# Docker Commands
+
+This repository contains a React JS project that has been Dockerized for easy deployment and distribution. Here are some useful Docker commands for working with this project:
+
+## Building the Docker Image
+
+To build the Docker image in development mode for this project, run the following command from the root directory of the project:
+
+```
+docker build -t front-end-dev-image -f Dockerfile.dev .
+```
+
+To build the Docker image in production mode for this project, run the following command from the root directory of the project:
+
+```
+docker build -t front-end-prod-image -f Dockerfile.prod .
+```
+
+## Running the Docker Container
+
+To run the Docker container in development mode for this project, use the following command:
+
+```
+docker run -p 3000:3000 front-end-dev-image
+```
+
+To run the Docker container in production mode for this project, use the following command:
+
+```
+docker run -p 3000:3000 front-end-prod-image
+```
+
+This will start a Docker container and map port 3000 of the host machine to port 3000 of the container.
+
+## Stopping the Docker Container
+
+To stop the Docker container for this project, first use the following command to list all running containers:
+
+```
+docker ps
+```
+
+This will display a list of all running containers, along with their container IDs. Find the container ID for the React JS container you want to stop, and use it to stop the container using the following command:
+
+```
+docker stop <container-id>
+```
+
+Replace `<container-id>` with the actual container ID.
+
+## Removing the Docker Image
+
+To remove the Docker image for this project, use the following command:
+
+```
+docker rmi front-end-dev-image
+```
+
+## Removing the Docker Container
+
+To remove a Docker container, use the following command:
+
+```
+docker rm <container-id>
+```
+
+Replace `<container-id>` with the actual ID of the container you want to remove.
+
+# Docker Compose Commands
+
+## Docker Compose with -f, -d, and --build Flags
+
+The `docker-compose` command is used to manage Docker Compose applications, which are defined in a `docker-compose.yml` file. The `-f` flag is used to specify an alternate Compose file, the `-d` flag is used to run the containers in detached mode, and the `--build` flag is used to (re)build the images before starting the containers.
+
+## Starting with an Alternate Compose File, in Detached Mode, and Building Images
+
+To start a Compose application with an alternate Compose file, in detached mode, and (re)build the images before starting the containers, use the following command:
+
+```
+docker-compose -f docker-compose-dev.yml up -d --build
+```
+
+## Stopping with an Alternate Compose File
+
+To stop a Compose application with an alternate Compose file, use the following command:
+
+```
+docker-compose -f docker-compose-dev.yml down
+```
+
+## Viewing Logs with an Alternate Compose File
+
+To view the logs of a Compose application with an alternate Compose file, use the following command:
+
+```
+docker-compose -f docker-compose-dev.yml logs
+```

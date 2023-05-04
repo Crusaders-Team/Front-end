@@ -1,0 +1,13 @@
+version: "3.8"
+
+services:
+  react-app:
+    container_name: front-end-dev-container
+    image: front-end-dev-image
+    build: 
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./src:/app/src

@@ -1,0 +1,11 @@
+version: "3.8"
+
+services:
+  react-app:
+    container_name: front-end-prod-container
+    image: front-end-prod-image
+    build: 
+      context: .
+      dockerfile: Dockerfile.prod
+    ports:
+      - "8080:80"
