@@ -1,0 +1,71 @@
+.AppBar {
+    color: '#282c34' !important;
+    height: '10vh';
+  }
+  
+  .header {
+    align-items: center;
+  }
+  
+  .css-b1umqi-MuiPaper-root-MuiAppBar-root {
+    background-color: #212121 !important;
+    color: #7fc7ad !important;
+    justify-content: center !important;
+    height: 10vh !important;
+  }
+  
+  .css-1rwt2y5-MuiButtonBase-root-MuiButton-root:hover {
+    border-color: #b8e0d2 !important;
+    color: #b8e0d2 !important;
+  }
+  
+  .css-be7s7w-MuiButtonBase-root-MuiButton-root {
+    color: #7fc7ad !important;
+    border-color: #7fc7ad !important;
+    margin-left: 10px !important;
+  }
+  
+  .h1,
+  .h2,
+  .h3,
+  .h4,
+  .h5,
+  .h6,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-bottom: 0rem !important;
+  }
+  
+  .css-tzssek-MuiSvgIcon-root {
+    color: #7fc7ad !important;
+  }
+  
+  .css-17b1vef-MuiButtonBase-root-MuiButton-root {
+    font-weight: 800 !important;
+  }
+  
+  .Title {
+    color: white;
+    text-decoration: none;
+    user-select: none;
+  }
+  
+  a:link {
+    text-decoration: none;
+  }
+  
+  a:visited {
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: none;
+  }
+  
+  a:active {
+    text-decoration: none;
+  }
