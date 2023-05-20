@@ -1,0 +1,11 @@
+@media (max-width: 700px) {
+    .videos-container {
+        padding: 30px;
+    }
+}
+
+.videos-container {
+    padding: 10vh 10vw 10vh 10vw;
+    margin: 50px;
+    background-color: #F5F5F5 !important;
+}

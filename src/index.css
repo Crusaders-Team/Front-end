@@ -1,8 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Quicksand';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -12,14 +11,3 @@ code {
     monospace;
 }
 
-/* @font-face {
-  font-family: 'KalamehWeb_Black';
-  src: local('KalamehWeb_Black'),
-    url(./Fonts/KalamehWeb_Black.ttf) format('truetype');
-  font-family: 'KalamehWeb_Bold';
-  src: local('KalamehWeb_Bold'),
-    url(./Fonts/KalamehWeb_Bold.ttf) format('truetype');
-  font-family: 'KALAMEH-REGULAR';
-  src: local('KALAMEH-REGULAR'),
-    url(./Fonts/KalamehWeb_Regular.ttf) format('truetype');
-} */

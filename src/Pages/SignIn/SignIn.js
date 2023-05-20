@@ -117,7 +117,7 @@ function SignIn() {
     <div>
       <ThemeProvider theme={theme}>
       <Navbar
-        SearchOption={true}
+        SearchOption={false}
         TicketOption={false}
         CartOption={false}
         DrawerOption={false}
