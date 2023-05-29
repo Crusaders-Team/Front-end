@@ -1,6 +1,6 @@
 import React from 'react'
 import './EditVideo.css'
-import { Typography, Paper, Box, TextField } from '@mui/material';
+import { Typography, Paper, Box, TextField, Grid } from '@mui/material';
 import { Theme, useTheme } from "@mui/material/styles";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import InputLabel from "@mui/material/InputLabel";
@@ -8,6 +8,8 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import Chip from "@mui/material/Chip";
+import { useState } from "react";
+import { Button, Input } from "@mui/material";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -21,16 +23,16 @@ const MenuProps = {
 };
 
 const names = [
-  'Oliver Hansen',
-  'Van Henry',
-  'April Tucker',
-  'Ralph Hubbard',
-  'Omar Alexander',
-  'Carlos Abbott',
-  'Miriam Wagner',
-  'Bradley Wilkerson',
-  'Virginia Andrews',
-  'Kelly Snyder',
+  'Funny',
+  'Review',
+  'Vlog',
+  'Fitness',
+  'Education',
+  'Technology',
+  'Tutorial',
+  'Music',
+  'Travel',
+  'Beauty',
 ];
 
 function getStyles(name, personName, theme) {
@@ -46,13 +48,32 @@ function getStyles(name, personName, theme) {
 function EditVideo() {
   const theme = useTheme();
   const [personName, setPersonName] = React.useState([]);
+  const [imageFile, setImageFile] = useState(null);
+  const [videoFile, setVideoFile] = useState(null);
 
-  const handleChange = (event) => {
+  const handleVideoChange = (event) => {
+    setVideoFile(event.target.files[0]);
+  };
+
+  const handleVideoClick = () => {
+    document.getElementById("video-file").click();
+  };
+
+  const handleImageChange = (event) => {
+    if (event.target.files.length) {
+      setImageFile(event.target.files[0]);
+    }
+  };
+
+  const handleImageClick = () => {
+    document.getElementById("image-file").click();
+  };
+
+  const handleChipChange = (event) => {
     const {
       target: { value },
     } = event;
     setPersonName(
-      // On autofill we get a stringified value.
       typeof value === 'string' ? value.split(',') : value,
     );
   };
@@ -65,10 +86,10 @@ function EditVideo() {
           flexWrap: "wrap",
           justifyContent: "space-around",
           "& > :not(style)": {
+            pb: 5,
             m: 1,
             mt: 5,
             width: "60vw",
-            height: "90vh",
           },
         }}
       >
@@ -95,14 +116,14 @@ function EditVideo() {
             variant="filled"
           />
 
-          <FormControl sx={{ m: 4, width: 300 }}>
+          <FormControl sx={{ m: 4, width: "60%" }}>
             <InputLabel id="demo-multiple-chip-label">Tags</InputLabel>
             <Select
               labelId="demo-multiple-chip-label"
               id="demo-multiple-chip"
               multiple
               value={personName}
-              onChange={handleChange}
+              onChange={handleChipChange}
               input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
               renderValue={(selected) => (
                 <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
@@ -124,6 +145,72 @@ function EditVideo() {
               ))}
             </Select>
           </FormControl>
+
+          <TextField
+            sx={{ m: 4, width: "90%" }}
+            id="filled-multiline-static"
+            label="Description"
+            multiline
+            rows={8}
+            defaultValue=""
+            variant="filled"
+          />
+          <Grid sx={{ display: "flex", mt: 3 }}>
+            {/* <Typography
+              variant="h2"
+              component="h2"
+              fontWeight="bold"
+              color="#1b1858"
+              sx={{ ml: 4 }}
+            >
+              Choose cover of the video
+            </Typography> */}
+
+            <Input
+              id="image-file"
+              type="file"
+              accept="image/*"
+              style={{ display: "none" }}
+              onChange={handleImageChange}
+            />
+            <Button
+              className="submit_button"
+              variant="contained"
+              onClick={handleImageClick}
+            >
+              {imageFile && <p>{imageFile.name}</p>}
+              {imageFile === null && <p>Choose Cover Image</p>}
+            </Button>
+
+            {/* <Typography
+              variant="h5"
+              component="h5"
+              fontWeight="bold"
+              color="#1b1858"
+              sx={{ ml: 4 }}
+            >
+              Choose the video
+            </Typography> */}
+
+            <Input
+              id="video-file"
+              type="file"
+              accept="video/*"
+              style={{ display: "none" }}
+              onChange={handleVideoChange}
+            />
+            <Button
+              className="submit_button"
+              variant="contained"
+              onClick={handleVideoClick}
+            >
+              {videoFile && <p>{videoFile.name}</p>}
+              {videoFile === null && <p>Choose Video File</p>}
+            </Button>
+            <Button className="submit_button" variant="contained">
+              SAVE
+            </Button>
+          </Grid>
         </Paper>
       </Box>
     </div>
