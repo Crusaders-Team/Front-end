@@ -44,19 +44,6 @@ function getStyles(name, personName, theme) {
 
 
 function EditVideo() {
-  const theme = useTheme();
-  const [personName, setPersonName] = React.useState([]);
-
-  const handleChange = (event) => {
-    const {
-      target: { value },
-    } = event;
-    setPersonName(
-      // On autofill we get a stringified value.
-      typeof value === 'string' ? value.split(',') : value,
-    );
-  };
-
   return (
     <div>
       <Box
@@ -65,65 +52,18 @@ function EditVideo() {
           flexWrap: "wrap",
           justifyContent: "space-around",
           "& > :not(style)": {
+            pb: 5,
             m: 1,
             mt: 5,
-            width: "60vw",
-            height: "90vh",
+            width: '60vw',
+            height: '90vh',
           },
         }}
       >
-        <Paper
-          sx={{ borderRadius: "20px", backgroundColor: "#c4d4f4" }}
-          elevation={3}
-        >
-          <Typography
-            variant="h1"
-            component="h2"
-            fontWeight="bold"
-            color="#1b1858"
-            sx={{ m: 4 }}
-          >
-            Edit Video
-          </Typography>
-          <TextField
-            className="name-textfield"
-            sx={{ m: 4 }}
-            required
-            id="filled-required"
-            label="Video Name"
-            defaultValue=""
-            variant="filled"
-          />
-
-          <FormControl sx={{ m: 4, width: 300 }}>
-            <InputLabel id="demo-multiple-chip-label">Tags</InputLabel>
-            <Select
-              labelId="demo-multiple-chip-label"
-              id="demo-multiple-chip"
-              multiple
-              value={personName}
-              onChange={handleChange}
-              input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
-              renderValue={(selected) => (
-                <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
-                  {selected.map((value) => (
-                    <Chip key={value} label={value} />
-                  ))}
-                </Box>
-              )}
-              MenuProps={MenuProps}
-            >
-              {names.map((name) => (
-                <MenuItem
-                  key={name}
-                  value={name}
-                  style={getStyles(name, personName, theme)}
-                >
-                  {name}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
+        <Paper sx={{borderRadius: '20px'}} elevation={3}>
+            <Typography>
+                Edit Video
+            </Typography>
         </Paper>
       </Box>
     </div>
