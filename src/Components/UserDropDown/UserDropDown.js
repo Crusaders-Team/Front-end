@@ -14,9 +14,10 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import { Link } from 'react-router-dom'
 import './UserDropDown.css'
 
-const pages = ['Products', 'Pricing', 'Blog'];
+const pages = ['Edit Profile', 'Pricing', 'Blog'];
 const settings = ['Edit Profile', 'My Videos', 'Logout'];
 
 function UserDropDown() {
@@ -72,10 +73,14 @@ function UserDropDown() {
               onClose={handleCloseUserMenu}
             >
               <MenuItem onClick={handleCloseUserMenu}>
+              <Link to='/editprofile' className='LinkEditProfile'>
                 <Typography textAlign="center">Edit Profile</Typography>
+              </Link>
               </MenuItem>
-              <MenuItem onClick={handleCloseUserMenu}>
+              <MenuItem onClick={handleCloseUserMenu} className='LinkEditProfile'>
+              <Link to='/editvideo'>
                 <Typography textAlign="center">My Videos</Typography>
+              </Link>
               </MenuItem>
               <MenuItem onClick={handleClickOpen}>
                 <Typography textAlign="center">Logout</Typography>

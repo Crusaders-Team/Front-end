@@ -26,18 +26,21 @@ function SignIn() {
     console.log('access_token Come')
     console.log(localStorage.getItem('access_token'))
     const requestOptions = {
-      method: 'GET',
+      method: 'POST',
       headers: {
         Authorization: 'JWT ' + localStorage.getItem('access_token'),
         'Content-Type': 'application/json',
       },
+      body: {
+        'refresh_token': localStorage.getItem('refresh_token')
+      }
     }
-    fetch('http://127.0.0.1:8000/user/login/', requestOptions)
+    fetch('http://127.0.0.1:8000/user/refresh-token/', requestOptions)
       .then((response) => {
         console.log(localStorage.getItem('access_token'))
-        if (response.status != 401) {
-          history.push('/HomePage')  
-        }
+        // if (response.status != 401) {
+        //   history.push('/')  
+        // }
       })
       .catch((err) => {})
   }, [flagData])
@@ -72,7 +75,7 @@ function SignIn() {
         password: formData.password,
       }),
     }
-    fetch('http://127.0.0.1:8000/user/refresh-token/', requestOptions)
+    fetch('http://127.0.0.1:8000/user/login/', requestOptions)
       .then((response) => {
         if (response.status == 200) {
           console.log('response')
@@ -80,6 +83,7 @@ function SignIn() {
             console.log(data)
             localStorage.setItem('access_token', data.access)
             localStorage.setItem('refresh_token', data.refresh)
+            window.location.href = '/'
             setFlagData(flagData ? false : true)
           })
 
@@ -155,8 +159,8 @@ function SignIn() {
               }}
             >
             <TextField
-              id='name'
-              name='name'
+              id='username'
+              name='username'
               variant='standard'
               label='Username'
               margin='normal'

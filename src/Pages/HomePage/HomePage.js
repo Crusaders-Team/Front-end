@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./HomePage.css";
 import { Grid } from "@mui/material";
 import VideoCard from "../../Components/VideoCard/VideoCard";
@@ -6,6 +6,8 @@ import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Navbar from "../../Components/Navbar/Navbar";
+import axios from 'axios';
+
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -16,6 +18,19 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 function HomePage() {
+  const [videos, setVideos] = useState([]);
+
+  useEffect(() => {
+    axios.get('/videos/')
+      .then(response => {
+        setVideos(response.data);
+        console.log(response.data)
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }, []);
+
   return (
     <div>
       <Navbar
