@@ -25,13 +25,24 @@ function UserDropDown() {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [open, setOpen] = React.useState(false);
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+  function handleLogout() {
+    // Remove the token cookie
+    localStorage.removeItem('access_token');
+    window.location.href = "/signin"
+  }
 
-  const handleClose = () => {
-    setOpen(false);
-  };
+    const handleOpenDialog = () => {
+        setOpen(true);
+    };
+
+    const handleCloseDialog = () => {
+        setOpen(false);
+    };
+
+    const handleLogoutConfirm = () => {
+        handleLogout();
+        setOpen(false);
+    };
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -82,12 +93,12 @@ function UserDropDown() {
                 <Typography textAlign="center">My Videos</Typography>
               </Link>
               </MenuItem>
-              <MenuItem onClick={handleClickOpen}>
+              <MenuItem onClick={handleOpenDialog}>
                 <Typography textAlign="center">Logout</Typography>
               </MenuItem>
               <Dialog
                   open={open}
-                  onClose={handleClose}
+                  onClose={handleCloseDialog}
                   aria-labelledby="alert-dialog-title"
                   aria-describedby="alert-dialog-description"
                 >
@@ -100,8 +111,8 @@ function UserDropDown() {
                     </DialogContentText>
                   </DialogContent>
                   <DialogActions>
-                    <Button onClick={handleClose}>No</Button>
-                    <Button onClick={handleClose} autoFocus>
+                    <Button onClick={handleCloseDialog}>No</Button>
+                    <Button onClick={handleLogoutConfirm} autoFocus>
                       Yes
                     </Button>
                   </DialogActions>
