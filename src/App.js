@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import HomePage from './Pages/HomePage/HomePage'
 import MyVideos from './Pages/MyVideos/MyVideos'
 import EditVideo from './Pages/EditVideo/EditVideo'
+import CreateVideo from './Pages/CreateVideo/CreateVideo'
 import SignUp from './Pages/SignUp/SignUp';
 import SignIn from './Pages/SignIn/SignIn';
 import EditProfile from './Pages/EditProfile/EditProfile';
@@ -29,7 +30,8 @@ function App() {
               <Route path="/" element={<HomePage />} />
               <Route path="/myvideos" element={<MyVideos />} />
               <Route path="/editvideo" element={<EditVideo />} />
-              <Route path="/signup"  element={<SignUp />} />
+              <Route path="/createvideo" element={<CreateVideo />} />
+              <Route path="/signup" element={<SignUp />} />
               <Route path="/signin" element={<SignIn />} />
               <Route path="/editprofile" element={<EditProfile />} />
             </Routes>
