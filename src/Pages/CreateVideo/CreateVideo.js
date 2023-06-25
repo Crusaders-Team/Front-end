@@ -156,7 +156,7 @@ function CreateVideo() {
             color="#1b1858"
             sx={{ m: 4 }}
           >
-            Edit Video
+            Create Video
           </Typography>
           <TextField
             className="name-textfield"
