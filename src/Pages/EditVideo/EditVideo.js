@@ -10,6 +10,7 @@ import Select, { SelectChangeEvent } from "@mui/material/Select";
 import Chip from "@mui/material/Chip";
 import { useState } from "react";
 import { Button, Input } from "@mui/material";
+import Navbar from '../../Components/Navbar/Navbar';
 import api from '../../api';
 
 const ITEM_HEIGHT = 48;
@@ -132,6 +133,7 @@ function CreateVideo() {
               <Alert severity="error">{error}</Alert>
           </Snackbar>
       )}
+      <Navbar/>
       <Box
         sx={{
           display: "flex",
@@ -140,7 +142,7 @@ function CreateVideo() {
           "& > :not(style)": {
             pb: 5,
             m: 1,
-            mt: 5,
+            mt: 10,
             width: "60vw",
           },
         }}

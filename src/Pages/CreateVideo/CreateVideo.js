@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import './CreateVideo.css'
+import Navbar from '../../Components/Navbar/Navbar';
 import { Typography, Paper, Box, TextField, Grid, Alert, Snackbar } from '@mui/material';
 import { Theme, useTheme } from "@mui/material/styles";
 import OutlinedInput from "@mui/material/OutlinedInput";
@@ -132,6 +133,7 @@ function CreateVideo() {
               <Alert severity="error">{error}</Alert>
           </Snackbar>
       )}
+      <Navbar/>
       <Box
         sx={{
           display: "flex",
@@ -140,7 +142,7 @@ function CreateVideo() {
           "& > :not(style)": {
             pb: 5,
             m: 1,
-            mt: 5,
+            mt: 10,
             width: "60vw",
           },
         }}

@@ -1,6 +1,7 @@
 import {React, useState} from 'react'
 import './EditProfile.css'
 import { Typography, Paper, Box, TextField, Grid, Input, Button } from '@mui/material';
+import Navbar from '../../Components/Navbar/Navbar';
 import { Theme, useTheme } from "@mui/material/styles";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import InputLabel from "@mui/material/InputLabel";
@@ -101,6 +102,7 @@ function EditVideo() {
   };
   return (
     <div>
+      <Navbar/>
       <Box
         sx={{
           display: "flex",
@@ -109,7 +111,7 @@ function EditVideo() {
           "& > :not(style)": {
             pb: 5,
             m: 1,
-            mt: 5,
+            mt: 10,
             width: "60vw",
           },
         }}
@@ -132,17 +134,25 @@ function EditVideo() {
             sx={{ m: 4 }}
             required
             id="filled-required"
-            label="Video Name"
+            label="Username"
             defaultValue=""
             variant="filled"
           />
-
           <TextField
-            sx={{ m: 4, width: "90%" }}
-            id="filled-multiline-static"
-            label="Description"
-            multiline
-            rows={8}
+            className="name-textfield"
+            sx={{ m: 4 }}
+            required
+            id="filled-required"
+            label="Email"
+            defaultValue=""
+            variant="filled"
+          />
+          <TextField
+            className="name-textfield"
+            sx={{ m: 4 }}
+            required
+            id="filled-required"
+            label="Password"
             defaultValue=""
             variant="filled"
           />
@@ -169,7 +179,7 @@ function EditVideo() {
               onClick={handleImageClick}
             >
               {coverImage && <p>{coverImage.name}</p>}
-              {coverImage === null && <p>Choose Cover Image</p>}
+              {coverImage === null && <p>Choose Avatar</p>}
             </Button>
 
             {/* <Typography
@@ -181,22 +191,6 @@ function EditVideo() {
             >
               Choose the video
             </Typography> */}
-
-            <Input
-              id="video-file"
-              type="file"
-              accept="video/*"
-              style={{ display: "none" }}
-              onChange={e => setVideo(e.target.files[0])}
-            />
-            <Button
-              className="submit_button"
-              variant="contained"
-              onClick={handleVideoClick}
-            >
-              {video && <p>{video.name}</p>}
-              {video === null && <p>Choose Video File</p>}
-            </Button>
             <Button className="submit_button" variant="contained" onClick={handleCreateSubmit}>
               SAVE
             </Button>
