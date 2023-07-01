@@ -1,0 +1,17 @@
+.coinIcon {
+    margin-left: -4px;
+  }
+  
+  .textDecoration {
+    color: #005046;
+    text-decoration: none;
+    user-select: none;
+  }
+
+.css-acym3c-MuiPaper-root-MuiDialog-paper{
+  border-radius: 20px !important;
+}
+
+.LinkEditProfile{
+  color: black !important;
+}
