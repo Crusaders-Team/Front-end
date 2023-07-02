@@ -15,21 +15,22 @@ code {
 
 ::-webkit-scrollbar {
   width: 10px;
+  background-color: #151D25 !important;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 5px rgba(147, 154, 247, 0);
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0);
   border-radius: 20px;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #c4d4f4;
+  background: #6B6BF1;
   border-radius: 10px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #c4d4f4;
+  background: #6B6BF1;
 }
