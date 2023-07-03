@@ -6,6 +6,7 @@ import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Navbar from "../../Components/Navbar/Navbar";
+import Header from "../../Components/Header/Header";
 import axios from 'axios';
 
 
@@ -39,6 +40,7 @@ function HomePage() {
         DrawerOption={false}
         AuthorizationOption={true}
       />
+      <Header/>
       <Grid container spacing={2} className="videos-container">
         <Grid item md={4} xs={12}>
           <VideoCard
