@@ -102,7 +102,7 @@ function EditVideo() {
   };
   return (
     <div>
-      <Navbar/>
+      <Navbar />
       <Box
         sx={{
           display: "flex",
@@ -117,7 +117,7 @@ function EditVideo() {
         }}
       >
         <Paper
-          sx={{ borderRadius: "20px", backgroundColor: "#c4d4f4" }}
+          sx={{ borderRadius: "20px", backgroundColor: "#babae6" }}
           elevation={3}
         >
           <Typography
@@ -191,7 +191,11 @@ function EditVideo() {
             >
               Choose the video
             </Typography> */}
-            <Button className="submit_button" variant="contained" onClick={handleCreateSubmit}>
+            <Button
+              className="submit_button"
+              variant="contained"
+              onClick={handleCreateSubmit}
+            >
               SAVE
             </Button>
           </Grid>

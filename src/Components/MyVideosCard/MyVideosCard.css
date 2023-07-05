@@ -47,14 +47,13 @@
 
 .edit-dlt-button{
     text-decoration: none;
-    background-color: #6B6BF1 !important;
+    background-color: #151D25 !important;
     color: #ffffff !important;
     padding: 12px 15px;
     margin-right: 10px !important;
     margin-left: 0 !important;
     border-radius: 16px;
     border: none;
-    font-weight: normal;
     text-transform: uppercase;
     transition: all 0.2s ease-in-out;
     font-size: 14px;

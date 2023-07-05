@@ -124,16 +124,16 @@ function CreateVideo() {
   return (
     <div>
       {error && (
-          <Snackbar
-              anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-              open={true}
-              autoHideDuration={5000}
-              onClose={() => setError(null)}
-          >
-              <Alert severity="error">{error}</Alert>
-          </Snackbar>
+        <Snackbar
+          anchorOrigin={{ vertical: "top", horizontal: "center" }}
+          open={true}
+          autoHideDuration={5000}
+          onClose={() => setError(null)}
+        >
+          <Alert severity="error">{error}</Alert>
+        </Snackbar>
       )}
-      <Navbar/>
+      <Navbar />
       <Box
         sx={{
           display: "flex",
@@ -148,7 +148,7 @@ function CreateVideo() {
         }}
       >
         <Paper
-          sx={{ borderRadius: "20px", backgroundColor: "#c4d4f4" }}
+          sx={{ borderRadius: "20px", backgroundColor: "#babae6" }}
           elevation={3}
         >
           <Typography
@@ -168,7 +168,7 @@ function CreateVideo() {
             label="Video Name"
             defaultValue=""
             variant="filled"
-            onChange={e => setTitle(e.target.value)}
+            onChange={(e) => setTitle(e.target.value)}
           />
 
           <FormControl sx={{ m: 4, width: "60%" }}>
@@ -210,7 +210,7 @@ function CreateVideo() {
             defaultValue=""
             value={description}
             variant="filled"
-            onChange={e => setDescription(e.target.value)}
+            onChange={(e) => setDescription(e.target.value)}
           />
           <Grid sx={{ display: "flex", mt: 3 }}>
             {/* <Typography
@@ -228,7 +228,7 @@ function CreateVideo() {
               type="file"
               accept="image/*"
               style={{ display: "none" }}
-              onChange={e => setCoverImage(e.target.files[0])}
+              onChange={(e) => setCoverImage(e.target.files[0])}
             />
             <Button
               className="submit_button"
@@ -254,7 +254,7 @@ function CreateVideo() {
               type="file"
               accept="video/*"
               style={{ display: "none" }}
-              onChange={e => setVideo(e.target.files[0])}
+              onChange={(e) => setVideo(e.target.files[0])}
             />
             <Button
               className="submit_button"
@@ -264,7 +264,11 @@ function CreateVideo() {
               {video && <p>{video.name}</p>}
               {video === null && <p>Choose Video File</p>}
             </Button>
-            <Button className="submit_button" variant="contained" onClick={handleCreateSubmit}>
+            <Button
+              className="submit_button"
+              variant="contained"
+              onClick={handleCreateSubmit}
+            >
               SAVE
             </Button>
           </Grid>
