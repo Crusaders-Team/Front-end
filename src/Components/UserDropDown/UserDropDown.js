@@ -59,68 +59,71 @@ function UserDropDown() {
     setAnchorElUser(null);
   };
   return (
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: '45px' }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              <MenuItem onClick={handleCloseUserMenu}>
-              <Link to='/editprofile' className='LinkEditProfile'>
+    <Container maxWidth="xl">
+      <Toolbar disableGutters>
+        <Box sx={{ flexGrow: 0 }}>
+          <Tooltip title="Open settings">
+            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+              <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+            </IconButton>
+          </Tooltip>
+          <Menu
+            sx={{ mt: "45px" }}
+            id="menu-appbar"
+            anchorEl={anchorElUser}
+            anchorOrigin={{
+              vertical: "top",
+              horizontal: "right",
+            }}
+            keepMounted
+            transformOrigin={{
+              vertical: "top",
+              horizontal: "right",
+            }}
+            open={Boolean(anchorElUser)}
+            onClose={handleCloseUserMenu}
+          >
+            <MenuItem onClick={handleCloseUserMenu}>
+              <Link to="/editprofile" className="LinkEditProfile">
                 <Typography textAlign="center">Edit Profile</Typography>
               </Link>
-              </MenuItem>
-              <MenuItem onClick={handleCloseUserMenu} className='LinkEditProfile'>
-              <Link to='/editvideo'>
+            </MenuItem>
+            <MenuItem onClick={handleCloseUserMenu} className="LinkEditProfile">
+              <Link to="/editvideo">
                 <Typography textAlign="center">My Videos</Typography>
               </Link>
-              </MenuItem>
-              <MenuItem onClick={handleOpenDialog}>
-                <Typography textAlign="center">Logout</Typography>
-              </MenuItem>
-              <Dialog
-                  open={open}
-                  onClose={handleCloseDialog}
-                  aria-labelledby="alert-dialog-title"
-                  aria-describedby="alert-dialog-description"
-                >
-                  <DialogTitle id="alert-dialog-title">
-                    {"Warning"}
-                  </DialogTitle>
-                  <DialogContent>
-                    <DialogContentText id="alert-dialog-description">
-                      Are you sure to exit?
-                    </DialogContentText>
-                  </DialogContent>
-                  <DialogActions>
-                    <Button onClick={handleCloseDialog}>No</Button>
-                    <Button onClick={handleLogoutConfirm} autoFocus>
-                      Yes
-                    </Button>
-                  </DialogActions>
-                </Dialog>
-            </Menu>
-          </Box>
-        </Toolbar>
-      </Container>
+            </MenuItem>
+            <MenuItem onClick={handleCloseUserMenu} className="LinkEditProfile">
+              <Link to="/editvideo">
+                <Typography textAlign="center">Upload a Video</Typography>
+              </Link>
+            </MenuItem>
+            <MenuItem onClick={handleOpenDialog}>
+              <Typography textAlign="center">Logout</Typography>
+            </MenuItem>
+            <Dialog
+              open={open}
+              onClose={handleCloseDialog}
+              aria-labelledby="alert-dialog-title"
+              aria-describedby="alert-dialog-description"
+            >
+              <DialogTitle id="alert-dialog-title">{"Warning"}</DialogTitle>
+              <DialogContent>
+                <DialogContentText id="alert-dialog-description">
+                  Are you sure to exit?
+                </DialogContentText>
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={handleCloseDialog}>No</Button>
+                <Button onClick={handleLogoutConfirm} autoFocus>
+                  Yes
+                </Button>
+              </DialogActions>
+            </Dialog>
+          </Menu>
+        </Box>
+      </Toolbar>
+    </Container>
   );
 }
 
