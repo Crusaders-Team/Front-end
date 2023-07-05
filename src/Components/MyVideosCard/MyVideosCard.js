@@ -10,6 +10,7 @@ import {
 import "./MyVideosCard.css";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import EditIcon from "@mui/icons-material/Edit";
+import { Link } from "react-router-dom";
 
 function MyVideosCard({ id, title, uploadTime, description, videoSrc, tags }) {
   return (
@@ -31,9 +32,11 @@ function MyVideosCard({ id, title, uploadTime, description, videoSrc, tags }) {
         <Chip className="card-chips" label="Tag 3" />
       </div>
       <CardActions className="card-action">
-        <Button class="edit-dlt-button" size="large">
-          <EditIcon />
-        </Button>
+        <Link to="/editvideo">
+          <Button class="edit-dlt-button" size="large">
+            <EditIcon />
+          </Button>
+        </Link>
         <Button class="edit-dlt-button" size="large">
           <DeleteOutlineIcon />
         </Button>
