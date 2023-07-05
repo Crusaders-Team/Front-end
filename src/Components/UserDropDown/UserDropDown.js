@@ -89,12 +89,12 @@ function UserDropDown() {
               </Link>
             </MenuItem>
             <MenuItem onClick={handleCloseUserMenu} className="LinkEditProfile">
-              <Link to="/editvideo">
+              <Link to="/myvideos">
                 <Typography textAlign="center">My Videos</Typography>
               </Link>
             </MenuItem>
             <MenuItem onClick={handleCloseUserMenu} className="LinkEditProfile">
-              <Link to="/editvideo">
+              <Link to="/createvideo">
                 <Typography textAlign="center">Upload a Video</Typography>
               </Link>
             </MenuItem>
