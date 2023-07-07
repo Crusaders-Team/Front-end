@@ -4,6 +4,8 @@ body {
   font-family: 'Quicksand';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: url("./Images/Bg/bg.jpg") !important;
+  /* background-color: #F5F5F5 !important; */
 }
 
 code {
@@ -11,3 +13,24 @@ code {
     monospace;
 }
 
+::-webkit-scrollbar {
+  width: 10px;
+  background-color: #151D25 !important;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0);
+  border-radius: 20px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #6B6BF1;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #6B6BF1;
+}

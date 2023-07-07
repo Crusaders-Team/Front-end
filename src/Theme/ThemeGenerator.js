@@ -60,7 +60,7 @@ export const theme = createTheme({
   palette: {
     type: "light",
     primary: {
-      main: "#0673F3",
+      main: "#6B6BF1",
       light: "#4885FF",
       dark: "#1552CC",
       contrastText: "#ffffff",
@@ -69,7 +69,7 @@ export const theme = createTheme({
       main: "#F6D101",
       light: "#fbd92a",
       dark: "#dab900",
-      contrastText: "#090020",
+      contrastText: "#ffffff",
     },
     warning: {
       main: "#EC9B12",
@@ -82,7 +82,7 @@ export const theme = createTheme({
       dark: "#c53b3b",
     },
     text: {
-      primary: "#000000",
+      primary: "#6B6BF1",
       secondary: "rgba(0,0,0,0.56)",
       disabled: "rgba(0,0,0,0.58)",
       hint: "rgba(0,0,0,0.4)",

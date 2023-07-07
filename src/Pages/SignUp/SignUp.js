@@ -11,12 +11,12 @@ import Link from '@mui/material/Link'
 import Typography from '@mui/material/Typography';
 import Navbar from '../../Components/Navbar/Navbar';
 import { useForm } from "react-hook-form";
-import axios from "axios";
+import api from "../../api";
 
 function SignUp() {
 
   const initialFormData = Object.freeze({
-    userName: '',
+    username: '',
     email: '',
     password: '',
   })
@@ -34,91 +34,37 @@ function SignUp() {
       ...errorData,
       [e.target.name]: '',
     })
-    console.log(formData)
   }
   const {
     register,
     formState: { errors },
   } = useForm();
+
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log(formData)
-    console.log(
-      JSON.stringify({
-        username: formData.userName,
-        email: formData.email,
-        password: formData.password,
-      })
-    )
-    updateErrorData({
-      ...errorData,
-      userName: '',
-    })
-    updateErrorData({
-      ...errorData,
-      email: '',
-    })
-    updateErrorData({
-      ...errorData,
-      password: '',
-    })
-    console.log(errorData)
 
-    const requestOptions = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        username: formData.userName,
-        email: formData.email,
-        password: formData.password,
-      }),
+    const loginData = {
+      'username': formData.username,
+      'password': formData.password,
+      'email': formData.email
     }
-    fetch('http://127.0.0.1:8000/user/signup/', requestOptions)
-      .then((response) => {
-        if (response.status === 201) {
-          alert('User registered!')
-          history.push('/signin')
-          window.location.reload(true)
-        } else {
-          throw response
-        }
-      })
-      .catch((err) => {
-        err.text().then((errorMessage) => {
-          const errors = JSON.parse(errorMessage)
-          console.log('e ' + errors.email)
-          if (errors.username !== undefined) {
-            updateErrorData({
-              ...errorData,
-              userName: errors.username,
-            })
-            return
-          }
 
-          if (errors.email !== undefined) {
-            updateErrorData({
-              ...errorData,
-              email: errors.email,
-            })
-            return
-          }
-
-          if (errors.password !== undefined) {
-            updateErrorData({
-              ...errorData,
-              password: errors.password,
-            })
-            return
-          }
+    api.post('/users/signup/', loginData)
+        .then((response) => {
+            console.log(response)
+          window.location.href = "/signin"
         })
-      })
+        .catch((err) => {
+            console.log(err)
+          alert('An error')
+        })
   }
   return (
     <div>
       <Navbar
-        SearchOption={true}
+        SearchOption={false}
         TicketOption={false}
-        CartOption={false}
+        CartOption={true}
         DrawerOption={false}
         AuthorizationOption={false}
       />
@@ -156,13 +102,13 @@ function SignUp() {
             }}
           >
             <TextField
-              id='userName'
-              name='userName'
+              id='username'
+              name='username'
               variant='standard'
               label='Username'
               margin='normal'
               required
-              helperText={errorData.userName != '' ? errorData.userName : ''}
+              helperText={errorData.username != '' ? errorData.username : ''}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position='start'>

@@ -9,25 +9,29 @@ import {
 } from "@mui/material";
 import './VideoCard.css'
 
-function VideoCard({ id, title, uploadTime, description, videoSrc, tags }) {
+function VideoCard(id, title, cover) {
   return (
     <Card className="homepage-card">
       <CardHeader
         className="card-header"
-        title="My Title"
+        title={title}
         subheader="Author, Released Date"
       />
       <CardMedia
         component="img"
         height="200"
-        image="https://source.unsplash.com/random"
+        image={cover}
         alt="Random Unsplash Image"
       />
-      <div style={{ display: "flex", flexWrap: "wrap", gap: 8, padding: 16 }}>
-        <Chip className="card-chips" label="Tag 1" />
-        <Chip className="card-chips" label="Tag 2" />
-        <Chip className="card-chips" label="Tag 3" />
-      </div>
+        {/*<div style={{ display: "flex", flexWrap: "wrap", gap: 8, padding: 16 }}>*/}
+        {/*    {tags.length > 0 && (*/}
+        {/*        <div>*/}
+        {/*            {tags.map((tag) => (*/}
+        {/*                <Chip key={tag.id} className="card-chips" label={tag.name} />*/}
+        {/*            ))}*/}
+        {/*        </div>*/}
+        {/*    )}*/}
+        {/*</div>*/}
       <CardActions className="card-action">
         <Button href="id" class="card-button" size="large">
           Let's WATCH

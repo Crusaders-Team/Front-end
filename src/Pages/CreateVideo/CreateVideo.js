@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
-import './EditVideo.css'
+import './CreateVideo.css'
+import Navbar from '../../Components/Navbar/Navbar';
 import { Typography, Paper, Box, TextField, Grid, Alert, Snackbar } from '@mui/material';
 import { Theme, useTheme } from "@mui/material/styles";
 import OutlinedInput from "@mui/material/OutlinedInput";
@@ -10,7 +11,6 @@ import Select, { SelectChangeEvent } from "@mui/material/Select";
 import Chip from "@mui/material/Chip";
 import { useState } from "react";
 import { Button, Input } from "@mui/material";
-import Navbar from '../../Components/Navbar/Navbar';
 import api from '../../api';
 
 const ITEM_HEIGHT = 48;
@@ -101,7 +101,7 @@ function CreateVideo() {
   useEffect(() => {
     const fetchTags = async () => {
       try {
-        const response = await api.get('/videos/tags');
+        const response = await api.get('/tags');
         console.log(response)
         setTags(response.data);
       } catch (error) {
@@ -158,7 +158,7 @@ function CreateVideo() {
             color="#1b1858"
             sx={{ m: 4 }}
           >
-            Edit Video
+            Create Video
           </Typography>
           <TextField
             className="name-textfield"

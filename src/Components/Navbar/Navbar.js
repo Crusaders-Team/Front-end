@@ -81,7 +81,7 @@ import React, {
     
     return (
       <Box sx={{ flexGrow: 1 }}>
-        <AppBar sx={{ position: { xs: 'fixed', sm: 'static' } }}>
+        <AppBar sx={{ position: { xs: 'fixed', sm: 'fixed' } }}>
           <Toolbar>
             <Grid display={{ xs: 'flex', md: 'none' }}>
               {props.DrawerOption && (
@@ -97,7 +97,7 @@ import React, {
               )}
             </Grid>
             {props.DrawerOption && (
-              <Link to='/Homepage'>
+              <Link to='/'>
                 <Typography
                   variant='h4'
                   noWrap
@@ -105,14 +105,14 @@ import React, {
                   sx={{ display: { xs: 'none', sm: 'block' } }}
                   className='Title'
                 >
-                  LetsWatch
+                  LET'S WATCH
                 </Typography>
               </Link>
             )}
             {!props.DrawerOption && (
               <Link to='/Homepage'>
                 <Typography variant='h4' noWrap component='div' className='Title'>
-                  LetsWatch
+                  LET'S WATCH
                 </Typography>
               </Link>
             )}
@@ -143,9 +143,11 @@ import React, {
   
             <Box sx={{ flexGrow: 1 }} />
             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-              {props.AuthorizationOption &&
-                isAuthorized === true &&
-                kind === 'MEMBER'}
+              {props.AuthorizationOption 
+              /* &&
+              isAuthorized === true &&
+              kind === 'MEMBER'*/
+              }
   
               {/*props.AuthorizationOption &&
                 isAuthorized === true &&
@@ -158,25 +160,30 @@ import React, {
                   </IconButton>
                 )*/}
   
-              {props.AuthorizationOption &&
+              {props.AuthorizationOption 
+                /*&&
                 isAuthorized === true &&
-                props.AddTicketOption }
+                props.AddTicketOption*/ 
+              }
   
-              {props.AuthorizationOption &&
+              {/*{props.AuthorizationOption 
+                &&
                 isAuthorized === true &&
                 props.CartOption &&
-                props.numberOfItems !== 0 && (
+                props.numberOfItems !== 0 && 
+                &&
+                (
                   <IconButton size='large' color='inherit' href='/cart'>
                     <Badge badgeContent={numberOfItems} color='secondary'>
                       <ShoppingCartIcon />
                     </Badge>
                   </IconButton>
-                )}
+                )}*/}
   
-              {props.AuthorizationOption && isAuthorized === true && (
+              {props.AuthorizationOption  && /*&& isAuthorized === true &&*/ (
                 <UserDropDown kind={kind} />
               )}
-              {props.AuthorizationOption && isAuthorized === false && (
+              {/*{props.AuthorizationOption && isAuthorized === false && (
                 <Button
                   edge='end'
                   aria-label='account of current user'
@@ -189,13 +196,13 @@ import React, {
                 >
                   Sign in
                 </Button>
-              )}
+              )}*/}
             </Box>
             <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
-              {props.AuthorizationOption && isAuthorized === true && (
+              {props.AuthorizationOption /*&& isAuthorized === true*/ && (
                 <UserDropDown />
               )}
-              {props.AuthorizationOption && isAuthorized === false && (
+              {/* {props.AuthorizationOption && isAuthorized === false && (
                 <IconButton
                   edge='end'
                   aria-label='account of current user'
@@ -206,7 +213,7 @@ import React, {
                 >
                   <AccountCircle />
                 </IconButton>
-              )}
+              )} */}
             </Box>
           </Toolbar>
         </AppBar>

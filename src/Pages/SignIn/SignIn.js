@@ -11,6 +11,7 @@ import { useState, useEffect } from 'react'
 import history from '../../history'
 import Navbar from '../../Components/Navbar/Navbar'
 import { Create } from '@mui/icons-material'
+import api from "../../api";
 
 function SignIn() {
   const initialFormData = Object.freeze({
@@ -19,40 +20,14 @@ function SignIn() {
   })
   const [formData, updateFormData] = useState(initialFormData)
   const [flagData, setFlagData] = useState(false)
-  const [errorData, updateErrorData] = useState(initialFormData)
-  const [refresh, setRefresh] = useState(false)
-
-  useEffect(() => {
-    console.log('access_token Come')
-    console.log(localStorage.getItem('access_token'))
-    const requestOptions = {
-      method: 'GET',
-      headers: {
-        Authorization: 'JWT ' + localStorage.getItem('access_token'),
-        'Content-Type': 'application/json',
-      },
-    }
-    fetch('http://127.0.0.1:8000/user/login/', requestOptions)
-      .then((response) => {
-        console.log(localStorage.getItem('access_token'))
-        if (response.status != 401) {
-          history.push('/HomePage')  
-        }
-      })
-      .catch((err) => {})
-  }, [flagData])
-
-  useEffect(() => {
-    updateErrorData(initialFormData)
-    console.log(errorData)
-  }, [refresh])
+  const [errorData, setErrorData] = useState('')
 
   const handleChange = (e) => {
     updateFormData({
       ...formData,
       [e.target.name]: e.target.value.trim(),
     })
-    updateErrorData({
+    setErrorData({
       ...errorData,
       [e.target.name]: '',
     })
@@ -60,64 +35,35 @@ function SignIn() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log(formData)
 
-    if (refresh) setRefresh(false)
-    else setRefresh(true)
-    const requestOptions = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        username: formData.username,
-        password: formData.password,
-      }),
+    if (
+        !formData.username ||
+        !formData.password
+    ) {
+      setErrorData('Please fill all the required fields.');
+      return;
     }
-    fetch('http://127.0.0.1:8000/user/refresh-token/', requestOptions)
-      .then((response) => {
-        if (response.status == 200) {
-          console.log('response')
-          response.json().then((data) => {
-            console.log(data)
-            localStorage.setItem('access_token', data.access)
-            localStorage.setItem('refresh_token', data.refresh)
-            setFlagData(flagData ? false : true)
-          })
 
-          //console.log(data)
-        } else {
-          throw response
-        }
+    const loginData = {
+      'username': formData.username,
+      'password': formData.password
+    }
+
+    api.post('/users/login/', loginData)
+      .then((response) => {
+        localStorage.setItem('token', response.data.token)
+
+        window.location.href = "/"
       })
       .catch((err) => {
-        if (err.status === 401) {
-          alert('Your email or password is incorrect!')
-        }
-        err.text().then((errorMessage) => {
-          const errors = JSON.parse(errorMessage)
-          console.log('e ' + errors.username)
-          if (errors.username !== undefined) {
-            updateErrorData({
-              ...errorData,
-              username: errors.username,
-            })
-            return
-          }
-
-          if (errors.password !== undefined) {
-            updateErrorData({
-              ...errorData,
-              password: errors.password,
-            })
-            return
-          }
-        })
+        alert('Your email or password is incorrect!')
       })
   }
   return (
     <div>
       <ThemeProvider theme={theme}>
       <Navbar
-        SearchOption={true}
+        SearchOption={false}
         TicketOption={false}
         CartOption={false}
         DrawerOption={false}
@@ -155,8 +101,8 @@ function SignIn() {
               }}
             >
             <TextField
-              id='name'
-              name='name'
+              id='username'
+              name='username'
               variant='standard'
               label='Username'
               margin='normal'
