@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./HomePage.css";
 import { Grid } from "@mui/material";
 import VideoCard from "../../Components/VideoCard/VideoCard";
@@ -6,16 +6,31 @@ import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Navbar from "../../Components/Navbar/Navbar";
+import Header from "../../Components/Header/Header";
+import axios from 'axios';
+
 
 const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-  ...theme.typography.body2,
+  backgroundColor: 'None',
   padding: theme.spacing(1),
   textAlign: "center",
-  color: theme.palette.text.secondary,
+  color: 'None',
 }));
 
 function HomePage() {
+  const [videos, setVideos] = useState([]);
+
+  useEffect(() => {
+    axios.get('/videos/')
+      .then(response => {
+        setVideos(response.data);
+        console.log(response.data)
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }, []);
+
   return (
     <div>
       <Navbar
@@ -23,8 +38,9 @@ function HomePage() {
         TicketOption={false}
         CartOption={false}
         DrawerOption={false}
-        AuthorizationOption={false}
+        AuthorizationOption={true}
       />
+      <Header/>
       <Grid container spacing={2} className="videos-container">
         <Grid item md={4} xs={12}>
           <VideoCard

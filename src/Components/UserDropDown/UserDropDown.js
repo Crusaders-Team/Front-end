@@ -1,232 +1,130 @@
-import React, { useEffect, useState } from 'react'
-import './UserDropDown.css'
-import Box from '@mui/material/Box'
-import Avatar from '@mui/material/Avatar'
-import Menu from '@mui/material/Menu'
-import MenuItem from '@mui/material/MenuItem'
-import ListItemIcon from '@mui/material/ListItemIcon'
-import Divider from '@mui/material/Divider'
-import IconButton from '@mui/material/IconButton'
-import Typography from '@mui/material/Typography'
-import Tooltip from '@mui/material/Tooltip'
-import TodayIcon from '@mui/icons-material/Today'
-import ExitToAppIcon from '@mui/icons-material/ExitToApp'
-import HistoryIcon from '@mui/icons-material/History'
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
-import PaymentIcon from '@mui/icons-material/Payment'
-import ForumIcon from '@mui/icons-material/Forum'
-import Badge from '@mui/material/Badge'
-import ParkIcon from '@mui/icons-material/Park'
-import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings'
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import Menu from '@mui/material/Menu';
+import Container from '@mui/material/Container';
+import Avatar from '@mui/material/Avatar';
+import Tooltip from '@mui/material/Tooltip';
+import MenuItem from '@mui/material/MenuItem';
+import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 import { Link } from 'react-router-dom'
+import './UserDropDown.css'
 
-function UserDropDown(props) {
-  const [anchorEl, setAnchorEl] = React.useState(null)
-  const [numberOfTicket, setNumberOfTicket] = useState(0)
-  const [numberOfItems, setNumberOfItems] = useState(0)
-  const [userData, setUserData] = React.useState([])
-  const open = Boolean(anchorEl)
-  const [coins, setCoinsNumber] = useState(0)
+const pages = ['Edit Profile', 'Pricing', 'Blog'];
+const settings = ['Edit Profile', 'My Videos', 'Logout'];
 
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget)
-  }
-  const handleClose = () => {
-    setAnchorEl(null)
-  }
+function UserDropDown() {
+  const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [open, setOpen] = React.useState(false);
 
-  const handleLogOut = () => {
-    console.log('logout')
-    window.localStorage.removeItem('access_token')
-    window.localStorage.removeItem('refresh_token')
-    window.location.reload(true)
+  function handleLogout() {
+    // Remove the token cookie
+    localStorage.removeItem('access_token');
+    window.location.href = "/signin"
   }
 
-  useEffect(() => {
-    const requestOptions = {
-      method: 'GET',
-      headers: {
-        Authorization: 'JWT ' + localStorage.getItem('access_token'),
-        'Content-Type': 'application/json',
-      },
-    }
-    fetch('http://127.0.0.1:8000/api/coin/get/', requestOptions)
-      .then((response) => response.json())
-      .then((data) => {
-        setCoinsNumber(data.coin_value)
-        console.log(data)
-      })
-  }, [])
+    const handleOpenDialog = () => {
+        setOpen(true);
+    };
 
-  useEffect(() => {
-    const requestOptions = {
-      method: 'GET',
-      headers: {
-        Authorization: 'JWT ' + localStorage.getItem('access_token'),
-        'Content-Type': 'application/json',
-      },
-    }
-    async function FetchCountCart() {
-      await fetch(
-        'http://127.0.0.1:8000/api/cart/user-count-cart/',
-        requestOptions
-      )
-        .then((response) => response.json())
-        .then((data) => {
-          setNumberOfItems(data)
-          console.log(data)
-        })
-    }
-    async function FetchUserData() {
-      await fetch('http://127.0.0.1:8000/api/user/userinfo/', requestOptions)
-        .then((response) => response.json())
-        .then((data) => {
-          setUserData(data)
-          console.log(data)
-        })
-    }
-    FetchUserData()
-    FetchCountCart()
-  }, [])
+    const handleCloseDialog = () => {
+        setOpen(false);
+    };
 
+    const handleLogoutConfirm = () => {
+        handleLogout();
+        setOpen(false);
+    };
+
+  const handleOpenNavMenu = (event) => {
+    setAnchorElNav(event.currentTarget);
+  };
+  const handleOpenUserMenu = (event) => {
+    setAnchorElUser(event.currentTarget);
+  };
+
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
+  };
+
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
   return (
-    <React.Fragment>
-      <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
-        <Tooltip title='Account settings'>
-          <IconButton onClick={handleClick} size='small' sx={{ ml: 2 }}>
-            <Avatar sx={{ width: 32, height: 32 }}>S</Avatar>
-          </IconButton>
-        </Tooltip>
-      </Box>
-      <Menu
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose}
-        onClick={handleClose}
-        PaperProps={{
-          elevation: 0,
-          sx: {
-            overflow: 'visible',
-            filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
-            mt: 1.5,
-            '& .MuiAvatar-root': {
-              width: 32,
-              height: 32,
-              ml: -0.5,
-              mr: 1,
-            },
-            '&:before': {
-              content: '""',
-              display: 'block',
-              position: 'absolute',
-              top: 0,
-              right: 14,
-              width: 10,
-              height: 10,
-              bgcolor: 'background.paper',
-              transform: 'translateY(-50%) rotate(45deg)',
-              zIndex: 0,
-            },
-          },
-        }}
-        transformOrigin={{ horizontal: 'right', vertical: 'top' }}
-        anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
-      >
-        <MenuItem style={{ pointerEvents: 'none' }}>
-          <Avatar /> {userData.user_name}
-        </MenuItem>
-        <MenuItem sx={{ display: { xs: 'flex', md: 'none' } }}>
-          <Typography sx={{ pl: 1.2 }}>Coins: {coins}</Typography>
-        </MenuItem>
-        <Divider />
-        <MenuItem sx={{ display: { xs: 'flex', md: 'none' } }}>
-          <Box>
-            <ListItemIcon>
-              {numberOfItems !== 0 && (
-                <Badge badgeContent={numberOfItems} color='secondary'>
-                  <ShoppingCartIcon fontSize='small' />
-                </Badge>
-              )}
-              {numberOfItems === 0 && <ShoppingCartIcon fontSize='small' />}
-            </ListItemIcon>
-            Cart
-          </Box>
-        </MenuItem>
-        {/*<MenuItem sx={{ display: { xs: 'flex', md: 'none' } }}>
-          <Box>
-            <ListItemIcon>
-              {numberOfTicket !== 0 && (
-                <Badge badgeContent={numberOfTicket} color='secondary'>
-                  <ForumIcon fontSize='small' />
-                </Badge>
-              )}
-              {numberOfTicket === 0 && <ForumIcon fontSize='small' />}
-            </ListItemIcon>
-            Tickets
-          </Box>
-              </MenuItem>*/}
-        {props.kind === 'MEMBER' && (
-          <Link to='/greenHouse' className='textDecoration'>
-            <MenuItem>
-              <ListItemIcon>
-                <ParkIcon fontSize='small' />
-              </ListItemIcon>
-              Green House
+    <Container maxWidth="xl">
+      <Toolbar disableGutters>
+        <Box sx={{ flexGrow: 0 }}>
+          <Tooltip title="Open settings">
+            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+              <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+            </IconButton>
+          </Tooltip>
+          <Menu
+            sx={{ mt: "45px" }}
+            id="menu-appbar"
+            anchorEl={anchorElUser}
+            anchorOrigin={{
+              vertical: "top",
+              horizontal: "right",
+            }}
+            keepMounted
+            transformOrigin={{
+              vertical: "top",
+              horizontal: "right",
+            }}
+            open={Boolean(anchorElUser)}
+            onClose={handleCloseUserMenu}
+          >
+            <MenuItem onClick={handleCloseUserMenu}>
+              <Link to="/editprofile" className="LinkEditProfile">
+                <Typography textAlign="center">Edit Profile</Typography>
+              </Link>
             </MenuItem>
-          </Link>
-        )}
-        {props.kind === 'MEMBER' && (
-          <Link to='/TicketUser' className='textDecoration'>
-            <MenuItem>
-              <ListItemIcon>
-                <ForumIcon fontSize='small' />
-              </ListItemIcon>
-              My Tickets
+            <MenuItem onClick={handleCloseUserMenu} className="LinkEditProfile">
+              <Link to="/myvideos">
+                <Typography textAlign="center">My Videos</Typography>
+              </Link>
             </MenuItem>
-          </Link>
-        )}
-        {props.kind === 'SPECIALIST' && (
-          <Link to='/TicketPage' className='textDecoration'>
-            <MenuItem>
-              <ListItemIcon>
-                <ForumIcon fontSize='small' />
-              </ListItemIcon>
-              My Tickets
+            <MenuItem onClick={handleCloseUserMenu} className="LinkEditProfile">
+              <Link to="/createvideo">
+                <Typography textAlign="center">Upload a Video</Typography>
+              </Link>
             </MenuItem>
-          </Link>
-        )}
-        {props.kind === 'ADMIN' && (
-          <Link to='/AdminPage' className='textDecoration'>
-            <MenuItem>
-              <ListItemIcon>
-                <AdminPanelSettingsIcon fontSize='small' />
-              </ListItemIcon>
-              ADMIN
+            <MenuItem onClick={handleOpenDialog}>
+              <Typography textAlign="center">Logout</Typography>
             </MenuItem>
-          </Link>
-        )}
-
-        <MenuItem onClick={handleLogOut}>
-          <ListItemIcon>
-            <ExitToAppIcon fontSize='small' />
-          </ListItemIcon>
-          Logout
-        </MenuItem>
-        {/*<MenuItem>
-          <ListItemIcon>
-            <ShoppingCartIcon fontSize='small' />
-          </ListItemIcon>
-          Ongoing Orders
-        </MenuItem>
-        <MenuItem>
-          <ListItemIcon>
-            <HistoryIcon fontSize='small' />
-          </ListItemIcon>
-          Purchase History
-        </MenuItem>*/}
-      </Menu>
-    </React.Fragment>
-  )
+            <Dialog
+              open={open}
+              onClose={handleCloseDialog}
+              aria-labelledby="alert-dialog-title"
+              aria-describedby="alert-dialog-description"
+            >
+              <DialogTitle id="alert-dialog-title">{"Warning"}</DialogTitle>
+              <DialogContent>
+                <DialogContentText id="alert-dialog-description">
+                  Are you sure to exit?
+                </DialogContentText>
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={handleCloseDialog}>No</Button>
+                <Button onClick={handleLogoutConfirm} autoFocus>
+                  Yes
+                </Button>
+              </DialogActions>
+            </Dialog>
+          </Menu>
+        </Box>
+      </Toolbar>
+    </Container>
+  );
 }
 
 export default UserDropDown

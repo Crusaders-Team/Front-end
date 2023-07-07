@@ -1,0 +1,16 @@
+.header-image {
+    background-image: url('../../Images/Header/header.jpg');
+    background-size: cover;
+    width: 100%;
+    height: 120vh;
+    opacity: 70%;
+    text-align: center;
+}
+.header-text-1{
+    color: white !important;
+    font-size: 40px;
+    position: absolute;
+    top: 50vh;
+    right: 60vw;
+    opacity: 100% !important;
+}
