@@ -116,9 +116,9 @@ function SignUp() {
   return (
     <div>
       <Navbar
-        SearchOption={true}
+        SearchOption={false}
         TicketOption={false}
-        CartOption={false}
+        CartOption={true}
         DrawerOption={false}
         AuthorizationOption={false}
       />

@@ -7,3 +7,11 @@
     text-decoration: none;
     user-select: none;
   }
+
+.css-acym3c-MuiPaper-root-MuiDialog-paper{
+  border-radius: 20px !important;
+}
+
+.LinkEditProfile{
+  color: black !important;
+}
