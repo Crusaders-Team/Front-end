@@ -101,7 +101,7 @@ function CreateVideo() {
   useEffect(() => {
     const fetchTags = async () => {
       try {
-        const response = await api.get('/tags');
+        const response = await api.get('/videos/tags');
         console.log(response)
         setTags(response.data);
       } catch (error) {

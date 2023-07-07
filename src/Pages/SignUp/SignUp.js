@@ -11,7 +11,7 @@ import Link from '@mui/material/Link'
 import Typography from '@mui/material/Typography';
 import Navbar from '../../Components/Navbar/Navbar';
 import { useForm } from "react-hook-form";
-import axios from "axios";
+import api from "../../api";
 
 function SignUp() {
 
@@ -73,6 +73,7 @@ function SignUp() {
         password: formData.password,
       }),
     }
+
     fetch('http://127.0.0.1:8000/user/signup/', requestOptions)
       .then((response) => {
         if (response.status === 201) {

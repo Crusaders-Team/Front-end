@@ -7,8 +7,7 @@ import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Navbar from "../../Components/Navbar/Navbar";
 import Header from "../../Components/Header/Header";
-import axios from 'axios';
-
+import api from "../../api";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: 'None',
@@ -21,7 +20,7 @@ function HomePage() {
   const [videos, setVideos] = useState([]);
 
   useEffect(() => {
-    axios.get('/videos/')
+    api.get('/videos/')
       .then(response => {
         setVideos(response.data);
         console.log(response.data)
